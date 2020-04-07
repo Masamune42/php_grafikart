@@ -1,16 +1,5 @@
 <?php
-function nav_item($lien, $titre)
-{
-    $classe = 'nav-item';
-    if ($_SERVER['SCRIPT_NAME'] === $lien) {
-        $classe .= ' active';
-    }
-    return <<<HTML
-    <li class="$classe">
-        <a class="nav-link" href="$lien">$titre</a>
-    </li>';
-HTML;
-}
+require_once 'functions.php';
 ?>
 
 <!doctype html>
@@ -72,8 +61,7 @@ HTML;
 
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
-                <?= nav_item('/PHP_grafikart/4-PHP_HTML/index.php', 'Accueil'); ?>
-                <?= nav_item('/PHP_grafikart/4-PHP_HTML/contact.php', 'Contact'); ?>
+                <?= nav_menu('nav-link') ?>
             </ul>
         </div>
     </nav>
