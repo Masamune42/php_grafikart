@@ -73,3 +73,85 @@ Utilisation avec Heredoc (utilisation avec les gros blocs de textes)
 // fermeture obligatoirement sans indentation !
 HTML;
 ````
+Lien de redirection :
+- "/index.php" -> [chemin racine du site]/index.php
+- "index.php" -> [chemin actuel du site]/index.php
+
+## Formulaires
+Eviter à un utilisateur de rentrer des valeurs suspectes :
+- htmlentities() : transforme les caractères ensibles (ex : ">" -> &gt)
+
+Exemple de code à retranscrire pour adapter :
+````php
+<?php
+$aDeviner = 150;
+
+require 'header.php';
+?>
+
+<?php if (isset($_GET['chiffre'])) : ?>
+    <?php if ($_GET['chiffre'] > $aDeviner) : ?>
+        Votre chiffre est trop grand
+    <?php elseif ($_GET['chiffre'] < $aDeviner) : ?>
+        Votre chiffre est trop petit
+    <?php else : ?>
+        Bravo ! Vous avez deviné le chiffre <?= $aDeviner ?>
+    <?php endif ?>
+<?php endif ?>
+
+<form action="jeu.php" method="GET">
+    <input type="number" name="chiffre" placeholder="Entre 0 et 1000" value="<?php if (isset($_GET['chiffre'])) { echo htmlentities($_GET['chiffre']); } ?>">
+    <button type="submit">Deviner</button>
+</form>
+
+<?php require 'footer.php' ?>
+````
+Résultat :
+Le code est bien partitionné 
+````php
+<?php
+// PARTIE LOGIQUE
+
+// Déclaration des variables
+$aDeviner = 150;
+$erreur = null;
+$succes = null;
+$value = null;
+
+// Tests
+if (isset($_GET['chiffre'])) {
+    if ($_GET['chiffre'] > $aDeviner) {
+        $erreur = "Votre chiffre est trop grand";
+    } elseif ($_GET['chiffre'] < $aDeviner) {
+        $erreur = "Votre chiffre est trop petit";
+    } else {
+        $succes = "Bravo ! Vous avez deviné le chiffre <strong>$aDeviner</strong>";
+    }
+
+    $value = (int) $_GET['chiffre'];
+}
+
+// PARTIE HTML
+require 'header.php';
+?>
+
+<?php if ($erreur) : ?>
+    <div class="alert alert-danger">
+        <?= $erreur ?>
+    </div>
+<?php elseif ($succes) : ?>
+    <div class="alert alert-success">
+        <?= $succes ?>
+    </div>
+<?php endif ?>
+
+<form action="jeu.php" method="GET">
+    <input type="number" name="chiffre" placeholder="Entre 0 et 1000" value="<?= $value ?>">
+    <button type="submit">Deviner</button>
+</form>
+````
+
+## TIPS
+Ecrire une balise avec classe inclues :
+div.alert.alert-danger -> <div class="alert alert-danger"></div>
+OU .alert.alert-danger

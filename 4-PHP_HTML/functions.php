@@ -11,7 +11,7 @@
 function nav_item($lien, $titre, $linkClass = '')
 {
     $classe = 'nav-item';
-    if ($_SERVER['SCRIPT_NAME'] === $lien) {
+    if ($_SERVER['SCRIPT_NAME'] === '/PHP_grafikart/4-PHP_HTML/' . $lien) {
         $classe .= ' active';
     }
     return <<<HTML
@@ -29,6 +29,6 @@ HTML;
  */
 function nav_menu($linkClass = '')
 {
-    return nav_item('/PHP_grafikart/4-PHP_HTML/index.php', 'Accueil', $linkClass) .
-        nav_item('/PHP_grafikart/4-PHP_HTML/contact.php', 'Contact', $linkClass);
+    return nav_item('index.php', 'Accueil', $linkClass) .
+        nav_item('contact.php', 'Contact', $linkClass);
 }

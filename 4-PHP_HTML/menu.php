@@ -1,4 +1,5 @@
 <?php
+// FICHIER NON UTILISE ICI (dans une précédente méthode)
 if (!function_exists('nav_item')) {
 
     function nav_item($lien, $titre, $linkClass = '')
