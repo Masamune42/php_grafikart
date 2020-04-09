@@ -53,23 +53,10 @@ if (isset($_GET['cornet'])) {
     }
 }
 
-// Tests pour le chiffre à deviner
-// if (isset($_POST['chiffre'])) {
-//     $value = (int) $_POST['chiffre'];
-//     if ($value > $aDeviner) {
-//         $erreur = "Votre chiffre est trop grand";
-//     } elseif ($value < $aDeviner) {
-//         $erreur = "Votre chiffre est trop petit";
-//     } else {
-//         $succes = "Bravo ! Vous avez deviné le chiffre <strong>$aDeviner</strong>";
-//     }
-// }
-
 // PARTIE HTML
 require 'header.php';
 ?>
 
-<!-- Partie messages pour le chiffre à deviner -->
 <?php if ($erreur) : ?>
     <div class="alert alert-danger">
         <?= $erreur ?>
@@ -79,26 +66,6 @@ require 'header.php';
         <?= $succes ?>
     </div>
 <?php endif ?>
-
-<!-- input texte -->
-<!-- <form action="jeu.php" method="POST">
-    <div class="form-group">
-        <input type="number" class="form-control" name="chiffre" placeholder="Entre 0 et 1000" value="<?= $value ?>">
-    </div>
-    <button type="submit" class="btn btn-primary">Deviner</button>
-</form> -->
-
-<!-- input checkbox -->
-<!-- <form action="jeu.php" method="GET">
-    <div class="form-group"> -->
-        <!-- On doit déclarer un tableau en nom pour récupérer tous les éléments de la checkbox dans la requête -->
-        <!-- Peut être aussi appliqué pour plusieurs input texte -->
-        <!-- <input type="checkbox" name="parfum[]" value="Fraise"> Fraise <br>
-        <input type="checkbox" name="parfum[]" value="Vanille"> Vanille <br>
-        <input type="checkbox" name="parfum[]" value="Chocolat"> Chocolat <br>
-    </div>
-    <button type="submit" class="btn btn-primary">Deviner</button>
-</form> -->
 
 <h1><?= $title ?></h1>
 <!-- EXERCICE -->
@@ -152,7 +119,6 @@ require 'header.php';
     </div>
 </div>
 
-<!-- Vérification des paramètres de requêtes GET et POST -->
 <h2>$_GET</h2>
 <pre>
 <?php var_dump($_GET) ?>

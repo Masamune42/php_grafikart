@@ -151,7 +151,33 @@ require 'header.php';
 </form>
 ````
 
+## Dates
+/!\ NON VALABLE POUR PHP 5.6+ /!\
+````php
+// Déclarer un tableau dans une constante -> utiliser la fonction serialize
+define('JOURS', serialize([
+    'Lundi',
+    'Mardi',
+    'Mercredi',
+    'Jeudi',
+    'Vendredi',
+    'Samedi',
+    'Dimanche'
+]));
+
+// Récupérer les informations du tableau de la constante -> unserialize
+unserialize(JOURS)
+````
+Si 2 tableaux sont liés (par le même index), alors on peut réutiliser l'index d'un tableau dans une boucle pour afficher l'autre
+````php
+<?php foreach (unserialize(JOURS) as $k => $jour) : ?>
+// ...
+    <?= creneaux_html(unserialize(CRENEAUX)[$k]) ?>
+````
+
 ## TIPS
-Ecrire une balise avec classe inclues :
-div.alert.alert-danger -> <div class="alert alert-danger"></div>
+### Ecrire une balise avec classes inclues
+div.alert.alert-danger -> ````<div class="alert alert-danger"></div>````<br>
 OU .alert.alert-danger
+
+### 
