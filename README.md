@@ -175,6 +175,18 @@ Si 2 tableaux sont liés (par le même index), alors on peut réutiliser l'index
     <?= creneaux_html(unserialize(CRENEAUX)[$k]) ?>
 ````
 
+Disponible depuis PHP 7
+````php
+// Exemple d'utilisation pour: Opérateur de fusion Null
+$action = $_POST['action'] ?? 'default';
+
+// le code ci-dessus est équivalent à cette structure if/else 
+if (isset($_POST['action'])) {
+    $action = $_POST['action'];
+} else {
+    $action = 'default';
+}
+````
 ## TIPS
 ### Ecrire une balise avec classes inclues
 div.alert.alert-danger -> ````<div class="alert alert-danger"></div>````<br>

@@ -5,23 +5,31 @@ require_once 'config.php';
 require_once 'functions.php';
 // Configuration du décalage horaire
 date_default_timezone_set('Europe/Paris');
+
 // Récupérer l'heure d'aujourd'hui $heure
+// Si on récupère le paramètre heure dans la méthode GET on l'utilise, sinon on récupère l'heure actuel
+// Idem pour le jour (numéro du jour de la semaine)
 // PHP 7+
 // $heure = (int)($_GET['heure'] ??  date('G'));
 // $jour = (int)($_GET['jour'] ??  date('N') - 1);
 // SINON
-$heure = (int)(isset($_GET['heure']) ?  $_GET['heure'] : date('G'));
-$jour = (int)(isset($_GET['jour']) ?  $_GET['jour'] : date('N') - 1);
+$heure = (int) (isset($_GET['heure']) ?  $_GET['heure'] : date('G'));
+$jour = (int) (isset($_GET['jour']) ?  $_GET['jour'] : date('N') - 1);
 
 // Récupérer les créneaux d'aujourd'hui
-// AVANT la sélection du jour possible
-$creneaux = unserialize(CRENEAUX)[date('N') - 1];
-// après
-$creneaux = unserialize(CRENEAUX)[$jour];
 // unserialize pour récupérer les tableaux : PHP 5.5
+// AVANT la sélection du jour possible
+// $creneaux = unserialize(CRENEAUX)[date('N') - 1];
+// APRES
+$creneaux = unserialize(CRENEAUX)[$jour];
+
 // $creneaux = creneaux_html(unserialize(CRENEAUX));
 $ouvert = in_creneaux($heure, $creneaux);
-$color = $ouvert ? 'green' : 'red';
+
+// Couleur à utiliser pour colorer le texte si ouvert ou fermé
+// Plus utilisé depuis la possibilité de sélection de l'heure
+// $color = $ouvert ? 'green' : 'red';
+
 require 'header.php'; ?>
 
 
@@ -57,7 +65,9 @@ require 'header.php'; ?>
             <!-- 0 => 'Lundi', 1 => 'Mardi' -->
             <?php foreach (unserialize(JOURS) as $k => $jour) : ?>
                 <!-- On colore le texte en vert si $k + 1 = N (numéro du jour de la semaine) -->
-                <li <?php if ($k + 1 === (int) date('N')) : ?> style="color: <?= $color ?>" <?php endif ?>>
+                <!-- A mettre que si l'on a pas la possibilité de choisir une date d'ouverture -->
+                <!-- <li <?php if ($k + 1 === (int) date('N')) : ?> style="color: <?= $color ?>" <?php endif ?>> -->
+                <li>
                     <strong><?= $jour ?></strong> :
                     <!-- On a bien CREANEAUX[0] => horaires de lundi, etc., donc même index que JOURS -->
                     <?= creneaux_html(unserialize(CRENEAUX)[$k]) ?>

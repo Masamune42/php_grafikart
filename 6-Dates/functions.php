@@ -98,6 +98,13 @@ function creneaux_html($creneaux)
     return implode(' et ', $phrases);
 }
 
+/**
+ * Fonction qui retourne true si l'heure est comprise dans le créneau
+ *
+ * @param int $heure heure
+ * @param array $creneaux tableau de créneaux
+ * @return bool true si l'heure se trouve dans le créneau, sinon false
+ */
 function in_creneaux($heure, $creneaux)
 {
     foreach ($creneaux as $creneau) {
