@@ -228,6 +228,11 @@ var_dump(unserialize($utilisateur));
 ````
 Un cookie ne doit pas gérer la connexion / déconnexion des utilisateurs car pas assez sécurisé.
 
+## Session
+- Une session ne vie que pendant une navigation de l'utilisateur, si il ferme son navigateur : session perdue.
+- Lorsque l'on démarre une session, PHP va créer un identifiant qu'il va définir dans un cookie et qui va identifier l'utilisateur pour lui afficher ses informations. Les informations sauvegardés en session ne peuvent pas être altérées.
+- N'utiliser la session que sur les pages qui en ont besoin et pas sur toutes les pages (ex : ne pas mettre session_start dans functions.php)
+
 ## TIPS
 ### Ecrire une balise avec classes inclues
 div.alert.alert-danger -> ````<div class="alert alert-danger"></div>````<br>
