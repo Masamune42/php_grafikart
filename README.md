@@ -187,9 +187,32 @@ if (isset($_POST['action'])) {
     $action = 'default';
 }
 ````
+
+## Lecture de fichiers
+https://www.php.net/manual/fr/function.fopen.php
+
+format csv -> problématique car si les champs contiennent des virgules, ils seront mis entre guillemets et si on fait un explode on va les récupérer
+format tsv -> même chose que csv mais avec des tabulations à place des virgules (pas le même problème)
+
+On peut utiliser facilement les constantes magiques pour les utiliser dans le chemin d'accès pour les require.
+````php
+// EXEMPLE
+// DIRECTORY_SEPARATOR : Remplace l'antislash pour s'asdapter au système d'exploitation
+// dirname(__DIR__) : récupère le chemin du dossier parent
+var_dump(dirname(dirname(dirname(dirname(__DIR__)))));
+// depuis PHP 7
+// dirname(__DIR__, 5) : récupère le chemin du dossier parent à 5 niveaux au-dessus
+$fichier =  dirname(__DIR__, 5) . DIRECTORY_SEPARATOR . 'demo.txt';
+
+// UTILISATION
+// On est sûr d'importer le fichier au bon endroit
+require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'functions.php';
+````
+
 ## TIPS
 ### Ecrire une balise avec classes inclues
 div.alert.alert-danger -> ````<div class="alert alert-danger"></div>````<br>
 OU .alert.alert-danger
 
-### 
+### Se déplacer à une ligne dans VSCode
+ctrl + G : numéro de la ligne
