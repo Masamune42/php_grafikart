@@ -209,6 +209,25 @@ $fichier =  dirname(__DIR__, 5) . DIRECTORY_SEPARATOR . 'demo.txt';
 require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'functions.php';
 ````
 
+## Cookies
+
+Utilisation d'un cookie avec un tableau de valeurs
+````php
+// Définition du tableau
+$user = [
+    'prenom' => 'John',
+    'nom' => 'Doe',
+    'age' => 18
+];
+// On sérialiase le tableau avant de le passer dans le cookie
+setcookie('user',serialize($user));
+
+$utilisateur = $_COOKIE['user'];
+// On le désérialise avant de l'afficher
+var_dump(unserialize($utilisateur));
+````
+Un cookie ne doit pas gérer la connexion / déconnexion des utilisateurs car pas assez sécurisé.
+
 ## TIPS
 ### Ecrire une balise avec classes inclues
 div.alert.alert-danger -> ````<div class="alert alert-danger"></div>````<br>
