@@ -44,8 +44,8 @@ require 'elements/header.php'; ?>
 
 <div class="row">
     <div class="col-md-8">
-        <!-- <h2>Debug</h2>
-        <pre><?php var_dump($_SESSION) ?></pre> -->
+        <h2>Debug</h2>
+        <pre><?php var_dump($_SESSION) ?></pre>
         <h2>Nous contacter</h2>
 
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi cum quibusdam accusantium non ea optio odio sit nihil deleniti minus, eius accusamus neque architecto, voluptatum voluptas nesciunt laboriosam itaque nobis!</p>
