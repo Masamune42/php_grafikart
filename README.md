@@ -234,9 +234,35 @@ Un cookie ne doit pas gérer la connexion / déconnexion des utilisateurs car pa
 - N'utiliser la session que sur les pages qui en ont besoin et pas sur toutes les pages (ex : ne pas mettre session_start dans functions.php)
 
 ## TIPS
+
 ### Ecrire une balise avec classes inclues
 div.alert.alert-danger -> ````<div class="alert alert-danger"></div>````<br>
 OU .alert.alert-danger
 
 ### Se déplacer à une ligne dans VSCode
 ctrl + G : numéro de la ligne
+
+## FONCTIONS UTILES
+str_pad : https://www.php.net/manual/fr/function.str-pad.php
+````php
+// int $mois = 2
+// Ici on lui dit qu'on va utiliser remplir $mois avec des 0 jusqu'à une taille = 2
+$mois = str_pad($mois, 2, '0');
+````
+
+glob : https://www.php.net/manual/fr/function.glob
+````php
+$fichier = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'compteur-' . $annee . '-' . $mois . '-*';
+// Récupération des fichiers ayant le même pattern avec * -> n'importe quoi
+$fichiers = glob($fichier);
+````
+
+basename : https://www.php.net/manual/fr/function.basename
+````php
+// Retourne le nom du fichier
+basename($fichier)
+````
+
+## TODO
+- Passer le projet en PHP 7
+- Ajouter des commentaires
