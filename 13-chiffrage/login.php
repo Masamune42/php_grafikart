@@ -1,7 +1,9 @@
 <?php
 $erreur = null;
+// Hahage du mdp : password_hash('Doe',PASSWORD_DEFAULT, ['cost' => 12]);
+$password = '$2y$12$4ZN57VYE8dTPrvdAUabS1.is3IjpifJN.ouUKUGsRnpz64zxuV//y';
 if (!empty($_POST['pseudo']) && !empty($_POST['motdepasse'])) {
-    if ($_POST['pseudo'] === 'John' && $_POST['motdepasse'] === 'Doe') {
+    if ($_POST['pseudo'] === 'John' && password_verify($_POST['motdepasse'], $password)) {
         session_start();
         $_SESSION['connecte'] = 1;
         header('Location: dashboard.php');

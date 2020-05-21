@@ -233,6 +233,42 @@ Un cookie ne doit pas gérer la connexion / déconnexion des utilisateurs car pa
 - Lorsque l'on démarre une session, PHP va créer un identifiant qu'il va définir dans un cookie et qui va identifier l'utilisateur pour lui afficher ses informations. Les informations sauvegardés en session ne peuvent pas être altérées.
 - N'utiliser la session que sur les pages qui en ont besoin et pas sur toutes les pages (ex : ne pas mettre session_start dans functions.php)
 
+## Chiffrage de mot de passe
+````php
+// Hahage du mdp
+$password = password_hash('Doe',PASSWORD_DEFAULT, ['cost' => 12]);
+// Vérification du mot de passe reçu dans un formulaire en méthode POST
+password_verify($_POST['motdepasse'], $password);
+````
+
+## DateTime
+https://www.php.net/manual/fr/class.datetime.php
+````php
+// Instanciation
+$date = new DateTime();
+$date->format('d/m/Y'); // Affichage la date : 21/05/2020
+$date->modify('+1 month'); // Rajoute un mois à la date : 21/06/2020
+
+$d = new DateTime('2019-01-01');
+$d2 = new DateTime('2019-04-01');
+
+// Compare la différence entre les 2 dates puis récupère les jours
+$diff = $d->diff($d2, true)->days; // de type DateInterval
+echo "Il y a {$diff} jours de différence";
+
+// Utilisation de DateInterval
+// Compare la différence entre les 2 dates
+$diff = $d->diff($d2, true);
+echo "Il y a {$diff->y} jours, {$diff->m} jours et {$diff->d} jours de différence";
+
+// Déclaration d'un nouvel objet de type DateInterval
+// Période 1 Mois 1 Jour Time 1 Minute
+$interval = new DateInterval('P1M1DT1M'); 
+
+// Ajouter à une date un interval
+$date->add($interval);
+````
+
 ## TIPS
 
 ### Ecrire une balise avec classes inclues
