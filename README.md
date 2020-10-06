@@ -294,6 +294,27 @@ php composer.phar dump-autoload
 require 'vendor/autoload.php';
 ```
 
+## Composer
+Installer les librairies
+```console
+composer install
+```
+Update les librairies
+```console
+composer update
+```
+On peut downgrade la version de la librairie utilisée dans composer.json
+```json
+// version 1.7 est supérieur
+"require": {
+    "erusev/parsedown": "^1.7"
+}
+// version 1.7 est max
+"require": {
+    "erusev/parsedown": "~1.7"
+}
+```
+
 ## TIPS
 
 ### Ecrire une balise avec classes inclues
