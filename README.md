@@ -269,6 +269,31 @@ $interval = new DateInterval('P1M1DT1M');
 $date->add($interval);
 ````
 
+## autoloader
+1. https://getcomposer.org/download/ : Utiliser les lignes de commandes pour importer des fichiers composer
+2. Exécuter les commandes, définir un nom de projet (ex : grafikart/site) et répondre non pour créer les dépendances
+```console
+php composer.phar
+php composer.phar init
+```
+3. Remplir le fichier composer.json, ajouter les lignes suivante afin définir la correspondance entre le namespace et le dossier local
+```json
+"autoload": {
+    "psr-4": {
+        "App\\":"class/"
+    }
+},
+```
+4. On charge le fichier json avec les paramètres passés pour créer un fichier d'autoloader
+```console
+php composer.phar dump-autoload
+```
+5. On peut maintenant utiliser l'autoloader
+```php
+// PHP va savoir dynamiquement où se trouve la classe que l'on veut importer
+require 'vendor/autoload.php';
+```
+
 ## TIPS
 
 ### Ecrire une balise avec classes inclues
@@ -277,6 +302,9 @@ OU .alert.alert-danger
 
 ### Se déplacer à une ligne dans VSCode
 ctrl + G : numéro de la ligne
+
+### Extensions utiles
+- PHP Namespace Resolver : pour importer automatiquement la classe sélectionnée (raccourci : Ctrl + alt + I)
 
 ## FONCTIONS UTILES
 str_pad : https://www.php.net/manual/fr/function.str-pad.php
