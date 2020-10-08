@@ -315,6 +315,14 @@ On peut downgrade la version de la librairie utilisée dans composer.json
 }
 ```
 
+## Tableau dynamique
+- On peut gérer dynamiquement les liens en les générant avec une fonction PHP et lui ajouter des paramètres si besoin (avec array_merge)
+```php
+// Cette fonction génère un code URL avec les paramètres existant en ajoutant des paramètres grâce à array_merge
+// Très utile lorsque que l'on veut gérer dynamiquement les liens (ex: recherches avec plusieurs critères)
+http_build_query(array_merge($_GET, $params);
+```
+
 ## TIPS
 
 ### Ecrire une balise avec classes inclues
