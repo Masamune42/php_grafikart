@@ -323,6 +323,14 @@ On peut downgrade la version de la librairie utilisée dans composer.json
 http_build_query(array_merge($_GET, $params);
 ```
 
+## Tests avec PHPUnit
+- Documentation des assertions : https://phpunit.readthedocs.io/fr/latest/assertions.html
+1. Installer PHPUnit via composer : composer require --dev phpunit/phpunit ^9
+2. Créer un dossier "tests" à la racine et "[NomClass]Test.php"
+3. Créer une fonction avec une fonction "assert" qui vérifie la cohérence d'une fonction
+4. Pour tester toutes les classes dans "tests" => ./vendor/bin/phpunit tests
+5. On peut visualiser les tests qui ont réussi ou échoué
+
 ## TIPS
 
 ### Ecrire une balise avec classes inclues
